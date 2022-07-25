@@ -70,7 +70,7 @@ app.post('/signup', celebrate({
 app.use(auth);
 
 app.use('/', require('./routes/users'));
-app.use('/', require('./routes/movie'));
+app.use('/', require('./routes/movies'));
 
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Страницы не существует'));
