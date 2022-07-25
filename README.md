@@ -1,2 +1,1 @@
-# movies-explorer-api
-Backend
+Бэкенд для диплома
