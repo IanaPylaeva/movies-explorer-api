@@ -12,17 +12,13 @@ const helmet = require('helmet');
 
 const { PORT = 3001 } = process.env;
 
-const { celebrate, Joi, errors } = require('celebrate');
+const { errors } = require('celebrate');
 
 const cors = require('cors');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const auth = require('./middlewares/auth');
-
-const { login, createUser } = require('./controllers/users');
-
-const NotFoundError = require('./errors/not-found-error'); // код 404
+const routes = require('./routes');
 
 const allowedCors = {
   origin: [
@@ -52,31 +48,9 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.post('/signin', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), login);
-
-app.post('/signup', celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), createUser);
-
-app.use(auth);
-
-app.use('/', require('./routes/users'));
-app.use('/', require('./routes/movies'));
-
-app.use('*', (req, res, next) => {
-  next(new NotFoundError('Страницы не существует'));
-});
-
 app.use(errorLogger); // подключаем логгер ошибок
+
+app.use('/', routes);
 
 app.use(errors());
 
