@@ -30,7 +30,7 @@ const allowedCors = {
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb');
+mongoose.connect('mongodb://localhost:27017/moviesdb');
 
 app.use(helmet());
 
@@ -48,10 +48,9 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.use(errorLogger); // подключаем логгер ошибок
-
 app.use('/', routes);
 
+app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors());
 
 app.use((error, req, res, next) => {

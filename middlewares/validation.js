@@ -9,7 +9,7 @@ const validationLogin = celebrate({
 
 const validationCreateUser = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
+    name: Joi.string().required().min(2).max(30),
     email: Joi.string().required().email(),
     password: Joi.string().required(),
   }),
@@ -39,7 +39,7 @@ const validationDeleteMovie = celebrate({
 
 const validationGetUser = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().length(24).hex(),
+    userId: Joi.string().min(1).length(24).hex(),
   }),
 });
 
