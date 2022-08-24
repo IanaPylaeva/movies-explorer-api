@@ -22,7 +22,7 @@ const routes = require('./routes');
 
 const allowedCors = {
   origin: [
-    'http://localhost:3001',
+    'http://localhost:3000',
     'http://movie.diplom.ianapylaeva.nomoredomains.xyz',
     'https://movie.diplom.ianapylaeva.nomoredomains.xyz',
   ],

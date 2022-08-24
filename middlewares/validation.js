@@ -18,7 +18,7 @@ const validationCreateUser = celebrate({
 const validationCreateMovie = celebrate({
   body: Joi.object().keys({
     country: Joi.string().required().min(2).max(300),
-    director: Joi.string().required().min(2).max(30),
+    director: Joi.string().required().min(2).max(300),
     duration: Joi.number().required(),
     year: Joi.string().required().min(2).max(30),
     description: Joi.string().required().min(1).max(5000),
@@ -26,8 +26,8 @@ const validationCreateMovie = celebrate({
     trailerLink: Joi.string().required().pattern(/^https?:\/\/(www\.)?[a-zA-Z\d-]+\.[\w\d\-._~:/?#[\]@!$&'()*+,;=]{2,}#?$/),
     thumbnail: Joi.string().required().pattern(/^https?:\/\/(www\.)?[a-zA-Z\d-]+\.[\w\d\-._~:/?#[\]@!$&'()*+,;=]{2,}#?$/),
     movieId: Joi.number().required(),
-    nameRU: Joi.string().required(),
-    nameEN: Joi.string().required(),
+    nameRU: Joi.string().allow(null, ''),
+    nameEN: Joi.string().allow(null, ''),
   }),
 });
 

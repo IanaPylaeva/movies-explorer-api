@@ -4,8 +4,8 @@ const NotFoundError = require('../errors/not-found-error'); // код 404
 const ForbiddenError = require('../errors/forbidden-error'); // код 403
 
 /* Получить все сохраненные пользователем фильмы */
-module.exports.getAllMovies = (req, res, next) => {
-  Movie.find({})
+module.exports.getAllMovies = async (req, res, next) => {
+  Movie.find({ owner: req.user._id })
     .then((movies) => res.status(200).send(movies))
     .catch((error) => next(error));
 };

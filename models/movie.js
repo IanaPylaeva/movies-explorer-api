@@ -48,11 +48,9 @@ const movieSchema = new mongoose.Schema({
   },
   nameRU: {
     type: String, // это строка
-    required: true, // обязательное поле
   },
   nameEN: {
     type: String, // это строка
-    required: true, // обязательное поле
   },
 });
 
